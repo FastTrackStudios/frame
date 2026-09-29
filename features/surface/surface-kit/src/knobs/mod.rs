@@ -30,6 +30,7 @@ pub(crate) mod knurled_cap;
 pub(crate) mod studio;
 pub(crate) mod valve;
 pub(crate) mod outboard;
+pub(crate) mod pedal;
 pub mod spec;
 
 use document_proto::{

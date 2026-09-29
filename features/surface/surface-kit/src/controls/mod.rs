@@ -10,6 +10,7 @@ mod levers;
 mod studio;
 mod piano;
 mod switches;
+mod stomp;
 
 use crate::registry::ComponentDef;
 
@@ -22,5 +23,6 @@ pub(crate) fn defs() -> Vec<ComponentDef> {
     all.extend(studio::defs());
     all.extend(bare_toggle::defs());
     all.extend(piano::defs());
+    all.extend(stomp::defs());
     all
 }

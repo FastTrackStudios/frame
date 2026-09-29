@@ -15,6 +15,10 @@ pub mod face;
 pub mod modulation;
 pub mod reverb;
 pub mod saturate;
+pub mod rigkit;
+pub mod suite_blackout_gain;
+pub mod suite_djent_forge;
+pub mod suite_modern_rhythm;
 
 pub use face::{Face, canvas, catalogs};
 
@@ -29,5 +33,8 @@ pub fn all() -> Vec<Face> {
     v.extend(reverb::faces());
     v.extend(saturate::faces());
     v.extend(modulation::faces());
+    v.extend(suite_djent_forge::faces());
+    v.extend(suite_modern_rhythm::faces());
+    v.extend(suite_blackout_gain::faces());
     v
 }
