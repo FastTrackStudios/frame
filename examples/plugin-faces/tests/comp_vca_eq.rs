@@ -4,7 +4,7 @@
 use design_lint::{Config, Severity, lint};
 use surface_proto::Source;
 
-const FILES: &[&str] = &["08-ssl-bus", "09-dbx-160", "10-distressor", "01-pultec-eqp1a", "02-ssl-channel", "03-api-550a", "04-neve-1073"];
+const FILES: &[&str] = &["08-bus-comp", "09-vca-comp", "10-character-comp", "01-pultec-eqp1a", "02-ssl-channel", "03-api-550a", "04-neve-1073"];
 
 fn faces() -> Vec<plugin_faces::Face> {
     let mut v = plugin_faces::comp_vca::faces();

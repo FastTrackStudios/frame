@@ -25,6 +25,7 @@
 //! over it from the fixed overlay above.
 
 pub(crate) mod concentric;
+pub(crate) mod outboard;
 pub mod spec;
 
 use document_proto::{

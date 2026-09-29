@@ -5,6 +5,7 @@
 mod buttons;
 pub(crate) mod parts;
 mod levers;
+mod piano;
 mod switches;
 
 use crate::registry::ComponentDef;
@@ -14,5 +15,6 @@ pub(crate) fn defs() -> Vec<ComponentDef> {
     let mut all = buttons::defs();
     all.extend(switches::defs());
     all.extend(levers::defs());
+    all.extend(piano::defs());
     all
 }

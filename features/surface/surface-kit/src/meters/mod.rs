@@ -18,6 +18,7 @@
 
 pub mod faces;
 mod leds;
+mod movements;
 pub mod scale;
 
 use document_proto::{Color, GradientStop, Node, NodeId, Paint, PaintKind, TextAlign, TextData, Transform};
@@ -82,6 +83,7 @@ pub(crate) fn defs() -> Vec<ComponentDef> {
         ),
     ];
     all.extend(leds::defs());
+    all.extend(movements::defs());
     all
 }
 

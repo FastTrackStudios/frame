@@ -274,6 +274,7 @@ pub fn components() -> Vec<ComponentDef> {
     let mut all: Vec<ComponentDef> = Vec::new();
     all.extend(crate::knobs::defs());
     all.extend(crate::knobs::concentric::defs());
+    all.extend(crate::knobs::outboard::defs());
     all.extend(crate::meters::defs());
     all.extend(crate::controls::defs());
     all.extend(crate::panels::defs());
