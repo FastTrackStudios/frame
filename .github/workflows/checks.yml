@@ -24,7 +24,7 @@ env:
 # for the wgpu renders, mold) come from the flake's `ci` shell.
 jobs:
   lint:
-    name: Lint (fmt + clippy)
+    name: Lint (fmt + clippy + boundary)
     runs-on: [self-hosted, thebattleship]
     timeout-minutes: 60
     steps:
@@ -38,6 +38,11 @@ jobs:
       - name: clippy
         if: ${{ !cancelled() }}
         run: nix develop --accept-flake-config .#ci --command cargo clippy --workspace --all-targets -- -D warnings
+      # `frame` (core) has no architect, vox, Dioxus or figcraft in its
+      # normal dependency tree; the integration is frame-architect.
+      - name: core boundary
+        if: ${{ !cancelled() }}
+        run: nix develop --accept-flake-config .#ci --command just boundary
 
   check:
     name: Check
