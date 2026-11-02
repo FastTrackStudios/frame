@@ -1,4 +1,6 @@
-# The fleet's pin; the nix dev shell (flake.nix) provides the same 1.99.1.
+# The fleet's pin; devenv-fleet's `rust` module (devenv.yaml) and the nix CI
+# shell (flake.nix) provide the same 1.99.1, with wasm32-unknown-unknown.
 [toolchain]
 channel = "1.99.1"
 components = ["rust-src", "rust-analyzer", "clippy", "rustfmt"]
+targets = ["wasm32-unknown-unknown"]
