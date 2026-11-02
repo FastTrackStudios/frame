@@ -2042,6 +2042,7 @@ dependencies = [
 name = "frame-doc"
 version = "0.1.0"
 dependencies = [
+ "blake3",
  "figcraft-collab",
  "figcraft-color",
  "figcraft-doc",
@@ -2049,6 +2050,11 @@ dependencies = [
  "figcraft-layout",
  "figcraft-pathops",
  "figcraft-text",
+ "frame",
+ "plugin-faces",
+ "serde",
+ "serde_json",
+ "uuid",
 ]
 
 [[package]]
@@ -2056,7 +2062,9 @@ name = "frame-editor"
 version = "0.1.0"
 dependencies = [
  "figcraft-engine",
+ "frame",
  "frame-doc",
+ "serde_json",
 ]
 
 [[package]]
