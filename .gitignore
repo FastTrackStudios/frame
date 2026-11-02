@@ -19,3 +19,6 @@ result
 # kept in git (130 MB).
 /examples/plugins/
 /examples/plugin-faces/generated/
+
+# The consumer's lock is Frame's, copied in by scripts/check-consumer.sh.
+/examples/consumer/Cargo.lock
