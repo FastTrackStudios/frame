@@ -77,7 +77,7 @@ zip = { workspace = true, features = ["deflate"], optional = true }
 [dev-dependencies]
 # Its own tests and examples, with the features they need (see their
 # required-features): a plain `cargo test` of the workspace builds them all.
-frame = { path = ".", features = ["anyrender", "cpu", "design", "dsp", "embed", "figma", "io", "library", "live", "render", "runtime", "surface-runtime-rpc", "theme"] }
+frame = { path = ".", features = ["anyrender", "cpu", "design", "dsp", "embed", "figma", "host-scene", "io", "library", "live", "nice-plug", "render", "runtime", "surface-runtime-rpc", "theme"] }
 architect = { workspace = true, features = ["vox", "local"] }
 facet = { workspace = true }
 facet-json = { workspace = true }

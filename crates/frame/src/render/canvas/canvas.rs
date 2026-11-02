@@ -376,11 +376,18 @@ mod host_scene_impl {
             self.0.stroke(style, transform, paint(brush), None, shape);
         }
         fn push_clip(&mut self, transform: Affine, shape: &BezPath) {
-            self.0.push_clip_layer(transform, shape);
+            self.0.push_clip_layer(Fill::NonZero, transform, shape);
         }
         fn push_opacity(&mut self, transform: Affine, alpha: f32, shape: &BezPath) {
-            self.0
-                .push_layer(BlendMode::default(), alpha, transform, shape, None, None);
+            self.0.push_layer(
+                Fill::NonZero,
+                BlendMode::default(),
+                alpha,
+                transform,
+                shape,
+                None,
+                None,
+            );
         }
         fn pop(&mut self) {
             self.0.pop_layer();
