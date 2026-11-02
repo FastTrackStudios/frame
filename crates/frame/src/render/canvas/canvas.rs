@@ -1,6 +1,6 @@
 //! The painting seam: what frame paints *into*.
 //!
-//! A host has its own scene type — session records into an anyrender 0.11
+//! A host has its own scene type — session records into an anyrender
 //! `Scene` and replays it under a transform; REAPER hands over a LICE
 //! bitmap; a test wants pixels. [`Canvas`] is the handful of calls all of
 //! them share (anyrender's `PaintScene` shape, in kurbo 0.13 / peniko 0.6,
@@ -340,11 +340,10 @@ impl Canvas for Tally {
     fn pop(&mut self) {}
 }
 
-#[cfg(feature = "anyrender-0-11")]
-mod anyrender_0_11_impl {
-    //! Paint into any anyrender 0.11 `PaintScene` — session's recorded
+#[cfg(feature = "host-scene")]
+mod host_scene_impl {
+    //! Paint into any anyrender `PaintScene` — session's recorded
     //! `anyrender::Scene` included.
-    use anyrender_0_11 as anyrender;
     use kurbo::{Affine, BezPath, Stroke};
     use peniko::{BlendMode, Brush, Fill};
 
@@ -389,5 +388,5 @@ mod anyrender_0_11_impl {
     }
 }
 
-#[cfg(feature = "anyrender-0-11")]
-pub use anyrender_0_11_impl::AnyRender;
+#[cfg(feature = "host-scene")]
+pub use host_scene_impl::AnyRender;

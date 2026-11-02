@@ -1,23 +1,21 @@
-//! A host's anyrender 0.11 scene as frame's paint target — Blitz's, drawn
+//! A host's anyrender scene as frame's paint target — Blitz's, drawn
 //! by whatever renderer the host runs: vello-hybrid on the iOS simulator,
 //! whose Metal has no indirect execution for Vello's compute stages. What
 //! that API has no word for is approximated: a luminance mask draws its
 //! content unmasked, and clips are non-zero.
 //!
-//! Here rather than in `render`, under the crates' own names: `render` also
-//! links frame's anyrender (git main), and a renamed dependency that a host
-//! redirects with `[patch]` (signal's, to the blitz fork) breaks dx's
-//! dependency scan.
+//! Frame and its hosts share one anyrender (0.14, Blitz's fork, the
+//! version architect pins), so a host's scene and frame's are one type.
 
 use kurbo::{Affine, Rect, Shape, Stroke};
 use peniko::{BlendMode, BrushRef, Color, Fill};
 
 use crate::render::{GlyphRun, PaintTarget};
 
-/// An anyrender 0.11 `PaintScene` as a [`PaintTarget`].
-pub struct AnyRender011<'s, S: anyrender_0_11::PaintScene>(pub &'s mut S);
+/// A host's anyrender `PaintScene` as a [`PaintTarget`].
+pub struct HostScene<'s, S: anyrender::PaintScene>(pub &'s mut S);
 
-impl<S: anyrender_0_11::PaintScene> PaintTarget for AnyRender011<'_, S> {
+impl<S: anyrender::PaintScene> PaintTarget for HostScene<'_, S> {
     fn fill<'b>(
         &mut self,
         style: Fill,
@@ -45,7 +43,7 @@ impl<S: anyrender_0_11::PaintScene> PaintTarget for AnyRender011<'_, S> {
             self.0.fill(
                 style,
                 transform,
-                anyrender_0_11::PaintRef::Image(opaque),
+                anyrender::PaintRef::Image(opaque),
                 brush_transform,
                 shape,
             );
@@ -55,7 +53,7 @@ impl<S: anyrender_0_11::PaintScene> PaintTarget for AnyRender011<'_, S> {
         self.0.fill(
             style,
             transform,
-            anyrender_0_11::PaintRef::from(brush),
+            anyrender::PaintRef::from(brush),
             brush_transform,
             shape,
         );
@@ -73,7 +71,7 @@ impl<S: anyrender_0_11::PaintScene> PaintTarget for AnyRender011<'_, S> {
         self.0.stroke(
             style,
             transform,
-            anyrender_0_11::PaintRef::from(brush),
+            anyrender::PaintRef::from(brush),
             brush_transform,
             shape,
         );
@@ -123,7 +121,7 @@ impl<S: anyrender_0_11::PaintScene> PaintTarget for AnyRender011<'_, S> {
     }
 
     fn draw_glyph_run(&mut self, run: &GlyphRun<'_>) {
-        let glyphs = run.glyphs.iter().map(|g| anyrender_0_11::Glyph {
+        let glyphs = run.glyphs.iter().map(|g| anyrender::Glyph {
             id: g.id,
             x: g.x,
             y: g.y,
@@ -135,7 +133,7 @@ impl<S: anyrender_0_11::PaintScene> PaintTarget for AnyRender011<'_, S> {
             run.normalized_coords,
             run.embolden,
             Fill::NonZero,
-            anyrender_0_11::PaintRef::from(run.brush.clone()),
+            anyrender::PaintRef::from(run.brush.clone()),
             run.brush_alpha,
             run.transform,
             run.glyph_transform,
