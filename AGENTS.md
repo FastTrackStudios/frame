@@ -21,3 +21,4 @@
 - The plan: FastTrackStudios/frame#2.
 - CI runs on ready PRs only: on a draft every job, `ci` included, is skipped. To get checks, mark the PR
   ready (`gh pr ready`); it runs then and on every push after. An agent waiting for green marks its PR ready first.
+
